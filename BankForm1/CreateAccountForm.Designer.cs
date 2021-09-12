@@ -33,7 +33,11 @@ namespace BankForm1
             this.CustomerNameLabel = new System.Windows.Forms.Label();
             this.BirthDatePicker = new System.Windows.Forms.DateTimePicker();
             this.DateOfBirthLabel = new System.Windows.Forms.Label();
-            this.maskedTextBox1 = new System.Windows.Forms.MaskedTextBox();
+            this.PhoneNumberMaskedTextBox = new System.Windows.Forms.MaskedTextBox();
+            this.PhoneNumberLabel = new System.Windows.Forms.Label();
+            this.AddressRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.AddressLabel = new System.Windows.Forms.Label();
+            this.CreateAccountButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // CustomerNameTextBox
@@ -71,19 +75,59 @@ namespace BankForm1
             this.DateOfBirthLabel.TabIndex = 3;
             this.DateOfBirthLabel.Text = "Date of Birth:";
             // 
-            // maskedTextBox1
+            // PhoneNumberMaskedTextBox
             // 
-            this.maskedTextBox1.Location = new System.Drawing.Point(133, 173);
-            this.maskedTextBox1.Name = "maskedTextBox1";
-            this.maskedTextBox1.Size = new System.Drawing.Size(237, 22);
-            this.maskedTextBox1.TabIndex = 4;
+            this.PhoneNumberMaskedTextBox.Location = new System.Drawing.Point(133, 173);
+            this.PhoneNumberMaskedTextBox.Mask = "(020)-000-0000";
+            this.PhoneNumberMaskedTextBox.Name = "PhoneNumberMaskedTextBox";
+            this.PhoneNumberMaskedTextBox.Size = new System.Drawing.Size(237, 22);
+            this.PhoneNumberMaskedTextBox.TabIndex = 4;
+            // 
+            // PhoneNumberLabel
+            // 
+            this.PhoneNumberLabel.AutoSize = true;
+            this.PhoneNumberLabel.Location = new System.Drawing.Point(15, 178);
+            this.PhoneNumberLabel.Name = "PhoneNumberLabel";
+            this.PhoneNumberLabel.Size = new System.Drawing.Size(103, 17);
+            this.PhoneNumberLabel.TabIndex = 5;
+            this.PhoneNumberLabel.Text = "Phone Number";
+            // 
+            // AddressRichTextBox
+            // 
+            this.AddressRichTextBox.Location = new System.Drawing.Point(133, 230);
+            this.AddressRichTextBox.Name = "AddressRichTextBox";
+            this.AddressRichTextBox.Size = new System.Drawing.Size(237, 96);
+            this.AddressRichTextBox.TabIndex = 6;
+            this.AddressRichTextBox.Text = "";
+            // 
+            // AddressLabel
+            // 
+            this.AddressLabel.AutoSize = true;
+            this.AddressLabel.Location = new System.Drawing.Point(13, 230);
+            this.AddressLabel.Name = "AddressLabel";
+            this.AddressLabel.Size = new System.Drawing.Size(60, 17);
+            this.AddressLabel.TabIndex = 7;
+            this.AddressLabel.Text = "Address";
+            // 
+            // CreateAccountButton
+            // 
+            this.CreateAccountButton.Location = new System.Drawing.Point(133, 346);
+            this.CreateAccountButton.Name = "CreateAccountButton";
+            this.CreateAccountButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateAccountButton.TabIndex = 8;
+            this.CreateAccountButton.Text = "Create";
+            this.CreateAccountButton.UseVisualStyleBackColor = true;
             // 
             // CreateAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.maskedTextBox1);
+            this.Controls.Add(this.CreateAccountButton);
+            this.Controls.Add(this.AddressLabel);
+            this.Controls.Add(this.AddressRichTextBox);
+            this.Controls.Add(this.PhoneNumberLabel);
+            this.Controls.Add(this.PhoneNumberMaskedTextBox);
             this.Controls.Add(this.DateOfBirthLabel);
             this.Controls.Add(this.BirthDatePicker);
             this.Controls.Add(this.CustomerNameLabel);
@@ -101,6 +145,10 @@ namespace BankForm1
         private System.Windows.Forms.Label CustomerNameLabel;
         private System.Windows.Forms.DateTimePicker BirthDatePicker;
         private System.Windows.Forms.Label DateOfBirthLabel;
-        private System.Windows.Forms.MaskedTextBox maskedTextBox1;
+        private System.Windows.Forms.MaskedTextBox PhoneNumberMaskedTextBox;
+        private System.Windows.Forms.Label PhoneNumberLabel;
+        private System.Windows.Forms.RichTextBox AddressRichTextBox;
+        private System.Windows.Forms.Label AddressLabel;
+        private System.Windows.Forms.Button CreateAccountButton;
     }
 }
