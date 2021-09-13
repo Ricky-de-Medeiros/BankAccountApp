@@ -82,6 +82,14 @@ namespace BankClassLibrary3
 
         List<Transaction> ListOfTransactions;
 
+        public List<Transaction> TransactionList
+        {
+            get
+            {
+                return ListOfTransactions;
+            }
+        }
+
         public Transaction LastTransaction
         {
             get
@@ -190,11 +198,6 @@ namespace BankClassLibrary3
         //Nested Class
         public class Transaction
         {
-            // 1. Organize the class with regions, 
-            // 2. Eliminate public fields using properties
-            // 3. Create a method to display info about the transaction
-            // 4. Create a regular, default and copy constructor
-            // 
 
             #region FIELDS AND PROPERTIES
 
@@ -216,6 +219,40 @@ namespace BankClassLibrary3
                 }
             }
 
+            public string Summary
+            {
+                get
+                {
+                    return TransactionTypeString +
+                        " " + MoneyAmount + " " +
+                        DateString;
+                }
+            }
+
+            public string TransactionTypeString
+            {
+                get
+                {
+                    return (TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw");
+                }
+            }
+
+            public string LocationString
+            {
+                get
+                {
+                    return Location;
+                }
+            }
+
+            public string DateString
+            {
+                get
+                {
+                    return TransactionDate.ToString("yyyy/MM/dd hh:mm:dd");
+                }
+            }
+
             #endregion FIELDS AND PROPERTIES
 
             #region METHODS
@@ -223,7 +260,7 @@ namespace BankClassLibrary3
             public void DisplayTransaction()
             {
                 Console.WriteLine((TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw") + "is done.");
-                Console.WriteLine("Total amount: " + AmountOfTransaction + " Date: " + TransactionDate.ToString("yyyy/mm/dd"));
+                Console.WriteLine("Total amount: " + AmountOfTransaction + " Date: " + TransactionDate.ToString("yyyy/MM/dd"));
             }
 
             #endregion METHODS

@@ -48,6 +48,7 @@ namespace BankForm1
             this.TransactionListBox.Name = "TransactionListBox";
             this.TransactionListBox.Size = new System.Drawing.Size(338, 404);
             this.TransactionListBox.TabIndex = 0;
+            this.TransactionListBox.SelectedIndexChanged += new System.EventHandler(this.TransactionListBox_SelectedIndexChanged);
             // 
             // CustomerNamePanel
             // 
