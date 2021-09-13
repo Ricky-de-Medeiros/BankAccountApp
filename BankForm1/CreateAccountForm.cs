@@ -92,8 +92,8 @@ namespace BankForm1
         private bool ValidateCustomerName(string aTextToValidate)
         {
             if(!string.IsNullOrEmpty(aTextToValidate) &&
-                aTextToValidate.Length < 2 &&
-                aTextToValidate.Length > 25)
+                aTextToValidate.Length > 2 &&
+                aTextToValidate.Length < 25)
             {
                 return true;
             }
