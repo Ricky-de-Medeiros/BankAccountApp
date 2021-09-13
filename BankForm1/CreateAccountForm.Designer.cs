@@ -38,6 +38,8 @@ namespace BankForm1
             this.AddressRichTextBox = new System.Windows.Forms.RichTextBox();
             this.AddressLabel = new System.Windows.Forms.Label();
             this.CreateAccountButton = new System.Windows.Forms.Button();
+            this.PhoneCheckBox = new System.Windows.Forms.CheckBox();
+            this.AddressCheckBox = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // CustomerNameTextBox
@@ -117,12 +119,39 @@ namespace BankForm1
             this.CreateAccountButton.TabIndex = 8;
             this.CreateAccountButton.Text = "Create";
             this.CreateAccountButton.UseVisualStyleBackColor = true;
+            this.CreateAccountButton.Click += new System.EventHandler(this.CreateAccountButton_Click);
+            // 
+            // PhoneCheckBox
+            // 
+            this.PhoneCheckBox.AutoSize = true;
+            this.PhoneCheckBox.Checked = true;
+            this.PhoneCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.PhoneCheckBox.Location = new System.Drawing.Point(393, 177);
+            this.PhoneCheckBox.Name = "PhoneCheckBox";
+            this.PhoneCheckBox.Size = new System.Drawing.Size(18, 17);
+            this.PhoneCheckBox.TabIndex = 9;
+            this.PhoneCheckBox.UseVisualStyleBackColor = true;
+            this.PhoneCheckBox.CheckedChanged += new System.EventHandler(this.PhoneCheckBox_CheckedChanged);
+            // 
+            // AddressCheckBox
+            // 
+            this.AddressCheckBox.AutoSize = true;
+            this.AddressCheckBox.Checked = true;
+            this.AddressCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.AddressCheckBox.Location = new System.Drawing.Point(393, 234);
+            this.AddressCheckBox.Name = "AddressCheckBox";
+            this.AddressCheckBox.Size = new System.Drawing.Size(18, 17);
+            this.AddressCheckBox.TabIndex = 10;
+            this.AddressCheckBox.UseVisualStyleBackColor = true;
+            this.AddressCheckBox.CheckedChanged += new System.EventHandler(this.AddressCheckBox_CheckedChanged);
             // 
             // CreateAccountForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.AddressCheckBox);
+            this.Controls.Add(this.PhoneCheckBox);
             this.Controls.Add(this.CreateAccountButton);
             this.Controls.Add(this.AddressLabel);
             this.Controls.Add(this.AddressRichTextBox);
@@ -150,5 +179,7 @@ namespace BankForm1
         private System.Windows.Forms.RichTextBox AddressRichTextBox;
         private System.Windows.Forms.Label AddressLabel;
         private System.Windows.Forms.Button CreateAccountButton;
+        private System.Windows.Forms.CheckBox PhoneCheckBox;
+        private System.Windows.Forms.CheckBox AddressCheckBox;
     }
 }
