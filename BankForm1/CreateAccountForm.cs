@@ -62,6 +62,19 @@ namespace BankForm1
         {
             string customerName = CustomerNameTextBox.Text;
             DateTime birthDate = BirthDatePicker.Value;
+            
+            // Validations
+            if (!ValidateCustomerName(customerName))
+            {
+                MessageBox.Show("Customer name is invalid.");
+                return;
+            }
+            else if(!ValidateBirthDate(birthDate))
+            {
+                MessageBox.Show("Birth Date is invalid.");
+                return;
+            }
+
             string phone = PhoneTextInput;
             string address = AddressTextInput;
             
@@ -74,6 +87,26 @@ namespace BankForm1
             displayAccount.ShowDialog();
             this.Show();
 
+        }
+
+        private bool ValidateCustomerName(string aTextToValidate)
+        {
+            if(!string.IsNullOrEmpty(aTextToValidate) &&
+                aTextToValidate.Length < 2 &&
+                aTextToValidate.Length > 25)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        private bool ValidateBirthDate(DateTime aDateToValidate)
+        {
+            if (DateTime.Compare(aDateToValidate, new DateTime(DateTime.Now.Year - 18, 12, 31)) > 0 )
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
