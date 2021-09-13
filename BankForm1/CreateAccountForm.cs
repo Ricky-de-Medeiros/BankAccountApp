@@ -80,6 +80,9 @@ namespace BankForm1
             
             Account newAccount = new Account(customerName, birthDate, phone, address);
 
+            newAccount.DepositMoney(1000);
+            newAccount.WithdrawMoney(500);
+
             //MessageBox.Show("Account of Customer " + customerName + " has been created.");
             DisplayAccountForm displayAccount = new DisplayAccountForm(newAccount);
 
