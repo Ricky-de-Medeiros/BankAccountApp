@@ -15,6 +15,7 @@ namespace BankForm1
     public partial class DisplayAccountForm : Form
     {
         private Account myAccount;
+        BindingList<Transaction> data;
         
         private DisplayAccountForm() { }
 
@@ -22,7 +23,12 @@ namespace BankForm1
         {
             InitializeComponent();
             myAccount = aAccount;
-            TransactionListBox.DataSource = myAccount.TransactionList;
+            CustomerNamePanel.TextInput = myAccount.CustomerName;
+            BalanceControlPanel.TextInput = myAccount.CurrentBalance.ToString();
+
+            data = new BindingList<Transaction>(myAccount.ListOfTransactions);
+
+            TransactionListBox.DataSource = data; // myAccount.TransactionList;
             TransactionListBox.DisplayMember = "Summary";
         }
 
@@ -35,13 +41,30 @@ namespace BankForm1
         {
             int newIndex = TransactionListBox.SelectedIndex;
 
-            Transaction selectedTransaction = myAccount.TransactionList[newIndex];
+            Transaction selectedTransaction = myAccount.ListOfTransactions[newIndex];
 
-            CustomerNamePanel.TextInput = myAccount.CustomerName;
+            
             TransactionTypePanel.TextInput = selectedTransaction.TransactionTypeString;
             TransactionDatePanel.TextInput = selectedTransaction.DateString;
             TransactionAmountPanel.TextInput = selectedTransaction.MoneyAmount.ToString();
             TransactionLocationPanel.TextInput = selectedTransaction.LocationString;
+
+        }
+
+        private void DepositButton_Click(object sender, EventArgs e)
+        {
+            double depositAmount = Convert.ToDouble(DepositAmountTextBox.Text.ToString());
+            myAccount.DepositMoney(depositAmount);
+            BalanceControlPanel.TextInput = myAccount.CurrentBalance.ToString();
+            data.ResetBindings();
+        }
+
+        private void WithdrawButton_Click(object sender, EventArgs e)
+        {
+            double withdrawAmount = Convert.ToDouble(WithdrawAmountTextBox.Text.ToString());
+            myAccount.WithdrawMoney(withdrawAmount);
+            BalanceControlPanel.TextInput = myAccount.CurrentBalance.ToString();
+            data.ResetBindings();
 
         }
     }

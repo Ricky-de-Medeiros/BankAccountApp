@@ -61,12 +61,12 @@ namespace BankForm1
             // BirthDatePicker
             // 
             this.BirthDatePicker.Location = new System.Drawing.Point(133, 121);
-            this.BirthDatePicker.MaxDate = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.BirthDatePicker.MaxDate = new System.DateTime(2002, 1, 31, 0, 0, 0, 0);
             this.BirthDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.BirthDatePicker.Name = "BirthDatePicker";
             this.BirthDatePicker.Size = new System.Drawing.Size(237, 22);
             this.BirthDatePicker.TabIndex = 2;
-            this.BirthDatePicker.Value = new System.DateTime(2005, 12, 31, 0, 0, 0, 0);
+            this.BirthDatePicker.Value = new System.DateTime(2002, 1, 31, 0, 0, 0, 0);
             // 
             // DateOfBirthLabel
             // 
