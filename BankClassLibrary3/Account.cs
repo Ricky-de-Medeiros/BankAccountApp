@@ -7,17 +7,17 @@ namespace BankClassLibrary3
     {
 
         #region FIELDS AND PROPERTIES
-
+        // static fields
         public static double ExchangeRate = 1.1d;
         public const string EMPTY_ADDRESS = "UNKNOWN";
         public const string EMPTY_PHONE = "####";
 
-        Customer AccountCustomer;
+        Customer _AccountCustomer;
         public string CustomerName
         {
             get
             {
-                return AccountCustomer.CustomerName;
+                return _AccountCustomer.CustomerName;
             }
 
         }
@@ -26,19 +26,19 @@ namespace BankClassLibrary3
         {
             get
             {
-                return AccountCustomer.PhoneNumber;
+                return _AccountCustomer.PhoneNumber;
             }
             set
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    AccountCustomer.PhoneNumber = EMPTY_PHONE;
+                    _AccountCustomer.PhoneNumber = EMPTY_PHONE;
                 }
                 else
                 {
-                    AccountCustomer.PhoneNumber = value;
+                    _AccountCustomer.PhoneNumber = value;
                 }
-                
+
             }
         }
 
@@ -46,47 +46,63 @@ namespace BankClassLibrary3
         {
             get
             {
-                return AccountCustomer.Address;
+                return _AccountCustomer.Address;
             }
             set
             {
                 if (String.IsNullOrEmpty(value))
                 {
-                    AccountCustomer.Address = EMPTY_ADDRESS;
+                    _AccountCustomer.Address = EMPTY_ADDRESS;
                 }
                 else
                 {
-                    AccountCustomer.Address = value;
+                    _AccountCustomer.Address = value;
                 }
-                
+
             }
         }
 
-        int AccountNumber;
-        double CurrentBalance;
-        public double Balance
+        int _AccountNumber;
+        public int AccountNumber
         {
             get
             {
-                return CurrentBalance;
+                return _AccountNumber;
+            }
+            //  There should be no set accessor
+        }
+
+        double _CurrentBalance;
+        public double CurrentBalance
+        {
+            get
+            {
+                return _CurrentBalance;
+            }
+        }
+        //public double Balance
+        //{
+        //    get
+        //    {
+        //        return _CurrentBalance;
+        //    }
+        //}
+
+        public double CurrentBalanceInForeignCurrency
+        {
+            get
+            {
+                return _CurrentBalance * ExchangeRate;
             }
         }
 
-        public double BalanceInForeignCurrency
+        List<Transaction> _ListOfTransactions;
+
+        public List<Transaction> ListOfTransactions
         {
             get
             {
-                return CurrentBalance * ExchangeRate;
-            }
-        }
-
-        List<Transaction> ListOfTransactions;
-
-        public List<Transaction> TransactionList
-        {
-            get
-            {
-                return ListOfTransactions;
+                return _ListOfTransactions;
             }
         }
 
@@ -94,84 +110,80 @@ namespace BankClassLibrary3
         {
             get
             {
-                if (ListOfTransactions.Count > 0)
+                if (_ListOfTransactions.Count > 0)
                 {
-                    return ListOfTransactions[ListOfTransactions.Count - 1];
+                    return _ListOfTransactions[_ListOfTransactions.Count - 1];
                 }
                 else
                 {
                     return null;
                 }
-                
+
             }
         }
 
         #endregion FIELDS AND PROPERTIES
 
         #region CONSTRUCTORS
-        
-        
+
+
         // Default Constructor
         public Account()
         {
-            AccountCustomer = new Customer("ADMIN", new DateTime(2000,1,1), null, null);
-            AccountNumber = Guid.NewGuid().GetHashCode();
+            _AccountCustomer = new Customer("ADMIN", new DateTime(2000, 1, 1), null, null);
+            _AccountNumber = Guid.NewGuid().GetHashCode();
 
-            CurrentBalance = 0;
-            ListOfTransactions = new List<Transaction>();
+            _CurrentBalance = 0;
+            _ListOfTransactions = new List<Transaction>();
         }
 
         // Copy Constructor
         public Account(Account aAccountToCopy)
         {
-            AccountNumber = aAccountToCopy.AccountNumber;
-            CurrentBalance = aAccountToCopy.CurrentBalance;
+            _AccountNumber = aAccountToCopy._AccountNumber;
+            _CurrentBalance = aAccountToCopy._CurrentBalance;
 
-            ListOfTransactions = new List<Transaction>();
+            _ListOfTransactions = new List<Transaction>();
 
-            for (int i = 0; i < aAccountToCopy.ListOfTransactions.Count; i++) 
+            for (int i = 0; i < aAccountToCopy._ListOfTransactions.Count; i++)
             {
-                ListOfTransactions.Add(aAccountToCopy.ListOfTransactions[i]);
+                _ListOfTransactions.Add(aAccountToCopy._ListOfTransactions[i]);
             }
 
             // shortcut
             // ListOfTransactions = new List<Transaction>(aAccountToCopy.ListOfTransactions);
 
             // copy customer
-            AccountCustomer = new Customer(aAccountToCopy.AccountCustomer);
+            _AccountCustomer = new Customer(aAccountToCopy._AccountCustomer);
         }
 
         // Initialization
-        public Account(string aCustomerName, DateTime aDateOfBirth, string aPhone = null, string aAddress = null) 
+        public Account(string aCustomerName, DateTime aDateOfBirth, string aPhone = null, string aAddress = null)
         {
 
-            AccountCustomer = new Customer(aCustomerName, aDateOfBirth, aPhone, aAddress);
+            _AccountCustomer = new Customer(aCustomerName, aDateOfBirth, aPhone, aAddress);
             //Generate random Globally Unique Identifiers Guid
-            AccountNumber = Guid.NewGuid().GetHashCode();
+            _AccountNumber = Guid.NewGuid().GetHashCode();
 
-            CurrentBalance = 0;
-            ListOfTransactions = new List<Transaction>();
+            _CurrentBalance = 0;
+            _ListOfTransactions = new List<Transaction>();
 
         }
 
         #endregion CONSTRUCTORS
 
         #region METHODS
-        public void DisplayBalance()
-        {
-            Console.WriteLine("Current Balance is : " + CurrentBalance);
-        }
 
         //Deposit Money Method
         public bool DepositMoney(double aAmount)
         {
 
             bool isSuccess = false;
-            CurrentBalance += aAmount;
+            _CurrentBalance += aAmount;
 
             // 5. Create a transaction object and add it to the list
             Transaction myTransaction = new Transaction(aAmount, TransactionType.DEPOSIT);
-            ListOfTransactions.Add(myTransaction);
+            _ListOfTransactions.Add(myTransaction);
 
             return isSuccess;
         }
@@ -180,11 +192,11 @@ namespace BankClassLibrary3
         public bool WithdrawMoney(double aAmount)
         {
             bool isSuccess = false;
-            CurrentBalance -= aAmount;
+            _CurrentBalance -= aAmount;
 
             // 6. Create a transaction object and add it to the list
             Transaction myTransaction = new Transaction(aAmount, TransactionType.WITHDRAWL);
-            ListOfTransactions.Add(myTransaction);
+            _ListOfTransactions.Add(myTransaction);
 
             return isSuccess;
         }
@@ -196,112 +208,7 @@ namespace BankClassLibrary3
 
         #region NESTED TYPES
         //Nested Class
-        public class Transaction
-        {
 
-            #region FIELDS AND PROPERTIES
-
-            double AmountOfTransaction;
-            DateTime TransactionDate;
-            string Location;
-
-            TransactionType TypeOfTransaction;
-
-            public double MoneyAmount
-            {
-                get
-                {
-                    return AmountOfTransaction;
-                }
-                set
-                {
-                    AmountOfTransaction = value;
-                }
-            }
-
-            public string Summary
-            {
-                get
-                {
-                    return TransactionTypeString +
-                        " " + MoneyAmount + " " +
-                        DateString;
-                }
-            }
-
-            public string TransactionTypeString
-            {
-                get
-                {
-                    return (TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw");
-                }
-            }
-
-            public string LocationString
-            {
-                get
-                {
-                    return Location;
-                }
-            }
-
-            public string DateString
-            {
-                get
-                {
-                    return TransactionDate.ToString("yyyy/MM/dd hh:mm:dd");
-                }
-            }
-
-            #endregion FIELDS AND PROPERTIES
-
-            #region METHODS
-
-            public void DisplayTransaction()
-            {
-                Console.WriteLine((TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw") + "is done.");
-                Console.WriteLine("Total amount: " + AmountOfTransaction + " Date: " + TransactionDate.ToString("yyyy/MM/dd"));
-            }
-
-            #endregion METHODS
-
-            #region CONSTRUCTORS
-
-            // We do not want to allow default transactions
-            private Transaction()
-            {
-                // Cannot Be called
-            }
-
-            // Regular Constructor
-            public Transaction(double aAmountOfTransaction, TransactionType atransactionType)
-            {
-                AmountOfTransaction = aAmountOfTransaction;
-                TypeOfTransaction = atransactionType;
-
-                TransactionDate = DateTime.Now;
-                Location = "EARTH";
-            }
-
-            // Copy Constructor
-            public Transaction(Transaction aTransaction)
-            {
-                AmountOfTransaction = aTransaction.AmountOfTransaction;
-                TypeOfTransaction = aTransaction.TypeOfTransaction;
-                TransactionDate = aTransaction.TransactionDate;
-                Location = aTransaction.Location;
-            }
-
-
-            #endregion CONSTRUCTORS
-
-        }
-
-        public enum TransactionType
-        {
-            DEPOSIT,
-            WITHDRAWL
-        }
+        #endregion NESTED TYPES
     }
-    #endregion NESTED TYPES
 }
