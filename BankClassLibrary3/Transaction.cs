@@ -15,7 +15,7 @@ namespace BankClassLibrary3
         DateTime _TransactionDate;
         string _Location;
 
-        TransactionType TypeOfTransaction;
+        TransactionType _TypeOfTransaction;
 
         public double MoneyAmount
         {
@@ -43,7 +43,7 @@ namespace BankClassLibrary3
         {
             get
             {
-                return (TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw");
+                return (_TypeOfTransaction == TransactionType.DEPOSIT ? "Deposit" : "Withdraw");
             }
         }
 
@@ -91,7 +91,7 @@ namespace BankClassLibrary3
         public Transaction(double aAmountOfTransaction, TransactionType atransactionType)
         {
             _MoneyAmount = aAmountOfTransaction;
-            TypeOfTransaction = atransactionType;
+            _TypeOfTransaction = atransactionType;
 
             _TransactionDate = DateTime.Now;
             _Location = "EARTH";
@@ -101,9 +101,27 @@ namespace BankClassLibrary3
         public Transaction(Transaction aTransaction)
         {
             _MoneyAmount = aTransaction._MoneyAmount;
-            TypeOfTransaction = aTransaction.TypeOfTransaction;
+            _TypeOfTransaction = aTransaction._TypeOfTransaction;
             _TransactionDate = aTransaction._TransactionDate;
             _Location = aTransaction._Location;
+        }
+
+        public Transaction(double aAmountOfTransaction, string aTransactionTypeString, DateTime aTransactionDate, 
+            string aTransactionLocation)
+        {
+            _MoneyAmount = aAmountOfTransaction;
+            _TransactionDate = aTransactionDate;
+            _Location = aTransactionLocation;
+            
+            switch(aTransactionTypeString)
+            {
+                case "Deposit":
+                    _TypeOfTransaction = TransactionType.DEPOSIT;
+                    break;
+                case "Withdraw":
+                    _TypeOfTransaction = TransactionType.WITHDRAWL;
+                    break;
+            }
         }
 
 
