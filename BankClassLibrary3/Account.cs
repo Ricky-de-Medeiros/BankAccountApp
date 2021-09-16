@@ -22,6 +22,14 @@ namespace BankClassLibrary3
 
         }
 
+        public DateTime CustomerBirthDate
+        {
+            get
+            {
+                return _AccountCustomer.DateOfBirth;
+            }
+        }
+
         public string CustomerPhone
         {
             get
@@ -80,13 +88,6 @@ namespace BankClassLibrary3
                 return _CurrentBalance;
             }
         }
-        //public double Balance
-        //{
-        //    get
-        //    {
-        //        return _CurrentBalance;
-        //    }
-        //}
 
         public double CurrentBalanceInForeignCurrency
         {
