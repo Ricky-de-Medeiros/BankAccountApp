@@ -36,7 +36,94 @@ namespace BankForm1
 
         public static Account GetLastAccount()
         {
-            return null;
+            Account lastAccount = new Account();
+
+            DirectoryInfo dirInfo = new DirectoryInfo(MainStorageDir);
+            FileInfo[] fileInfoArray = dirInfo.GetFiles();
+
+            // foreach(var fi in fileInfoArray) ....  too much coding
+            // Instead use L.I.N.Q (Language Integrated Queries)
+
+            FileInfo lastFileInfo = fileInfoArray.OrderByDescending(f => f.LastWriteTime).First();
+
+            if (lastFileInfo.Length == 0)
+            {
+                return null;
+            }
+
+            string filePath = lastFileInfo.FullName;
+            string fileName = Path.GetFileNameWithoutExtension(filePath);  // AccountId
+
+            int accountId = Convert.ToInt32(fileName);
+
+            string customerName;
+            DateTime birthDate;
+            string phoneNumber;
+            string address;
+
+
+            using (StreamReader sr = File.OpenText(filePath))
+            {
+                string headerLine = sr.ReadLine(); // AccountId_Customer
+
+                string[] headerParts = headerLine.Split('_');
+                customerName = headerParts[1];
+
+                string nextLine;
+
+                using (StreamReader srForCustomer = File.OpenText(CustStorageDir + "\\" + customerName + ".dat"))
+                {
+                    nextLine = srForCustomer.ReadLine(); // Header          CustomerName_BirthDate_Phone
+
+                    headerParts = nextLine.Split('_');
+
+                    birthDate = DateTime.ParseExact(headerParts[1], DateStringFormat, null);
+                    phoneNumber = headerParts[2];
+
+                    nextLine = srForCustomer.ReadLine();
+                    address = nextLine;
+
+                    while (!string.IsNullOrEmpty(nextLine))
+                    {
+                        string addressLine = nextLine;
+
+                        address += "\n" + addressLine;
+
+                        nextLine = srForCustomer.ReadLine();
+                    
+                    }
+
+                }
+
+                nextLine = sr.ReadLine();
+
+                while(!string.IsNullOrEmpty(nextLine))
+                {
+                    // transaction line
+                    string transactionLine = nextLine;
+                    nextLine = sr.ReadLine();
+
+                    string[] transactionParts = transactionLine.Split('_'); //Transaction_Type_Transaction_Amount_Transaction_Date_Location
+
+                    string transactionType = transactionParts[0]; // will handle at constructor
+                    double transactionAmount = Convert.ToDouble(transactionParts[1]);
+                    DateTime transactionDate = DateTime.ParseExact(transactionParts[2], DateStringFormat, null);
+                    string transactionLocation = transactionParts[3];
+
+                    Transaction newTransaction = new Transaction(transactionAmount, transactionType,
+                        transactionDate, transactionLocation);
+                }
+            }
+
+
+            //string[] accountFiles = Directory.GetFiles(MainStorageDir); // Does not guarantee the file order
+
+            //if (accountFiles.Length == 0)
+            //{
+            //    return null;
+            //}
+
+            //string lastAccountFile = accountFiles[accountFiles.Length - 1];
         }
 
         public static bool SaveAccount(Account aAccount)
