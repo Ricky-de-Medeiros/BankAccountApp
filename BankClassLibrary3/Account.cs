@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BankClassLibrary3
 {
-    public class Account
+    public class Account : AccountBase
     {
 
         #region FIELDS AND PROPERTIES
@@ -13,11 +13,15 @@ namespace BankClassLibrary3
         public const string EMPTY_PHONE = "####";
 
         Customer _AccountCustomer;
-        public string CustomerName
+        public override string CustomerName
         {
             get
             {
                 return _AccountCustomer.CustomerName;
+            }
+            set
+            {
+                _AccountCustomer.CustomerName = value;
             }
 
         }
@@ -81,7 +85,7 @@ namespace BankClassLibrary3
         }
 
         double _CurrentBalance;
-        public double CurrentBalance
+        public override double CurrentBalance
         {
             get
             {
@@ -120,6 +124,19 @@ namespace BankClassLibrary3
                     return null;
                 }
 
+            }
+        }
+
+        private double _Commission;
+        public override double Commission
+        {
+            get
+            {
+                return _Commission;
+            }
+            set
+            {
+                _Commission = value;
             }
         }
 
@@ -204,7 +221,7 @@ namespace BankClassLibrary3
         #region METHODS
 
         //Deposit Money Method
-        public bool DepositMoney(double aAmount)
+        public override bool DepositMoney(double aAmount)
         {
 
             bool isSuccess = false;
@@ -218,7 +235,7 @@ namespace BankClassLibrary3
         }
 
         // Withdraw Money Method
-        public bool WithdrawMoney(double aAmount)
+        public override bool WithdrawMoney(double aAmount)
         {
             bool isSuccess = false;
             _CurrentBalance -= aAmount;
@@ -230,8 +247,10 @@ namespace BankClassLibrary3
             return isSuccess;
         }
 
-        //Update Phone
-
+        public virtual void DisplayAccountInfo()
+        {
+            Console.WriteLine("Account Id: {0} Current Balance {1} Regular Account Type", _AccountNumber, _CurrentBalance);
+        }
         #endregion METHODS
 
 

@@ -44,78 +44,78 @@ namespace BankForm1
             // 
             // CustomerNameTextBox
             // 
-            this.CustomerNameTextBox.Location = new System.Drawing.Point(133, 74);
+            this.CustomerNameTextBox.Location = new System.Drawing.Point(116, 74);
             this.CustomerNameTextBox.Name = "CustomerNameTextBox";
-            this.CustomerNameTextBox.Size = new System.Drawing.Size(237, 22);
+            this.CustomerNameTextBox.Size = new System.Drawing.Size(208, 24);
             this.CustomerNameTextBox.TabIndex = 0;
             // 
             // CustomerNameLabel
             // 
             this.CustomerNameLabel.AutoSize = true;
-            this.CustomerNameLabel.Location = new System.Drawing.Point(12, 79);
+            this.CustomerNameLabel.Location = new System.Drawing.Point(10, 79);
             this.CustomerNameLabel.Name = "CustomerNameLabel";
-            this.CustomerNameLabel.Size = new System.Drawing.Size(109, 17);
+            this.CustomerNameLabel.Size = new System.Drawing.Size(107, 17);
             this.CustomerNameLabel.TabIndex = 1;
             this.CustomerNameLabel.Text = "Customer Name";
             // 
             // BirthDatePicker
             // 
-            this.BirthDatePicker.Location = new System.Drawing.Point(133, 121);
+            this.BirthDatePicker.Location = new System.Drawing.Point(116, 121);
             this.BirthDatePicker.MaxDate = new System.DateTime(2002, 1, 31, 0, 0, 0, 0);
             this.BirthDatePicker.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.BirthDatePicker.Name = "BirthDatePicker";
-            this.BirthDatePicker.Size = new System.Drawing.Size(237, 22);
+            this.BirthDatePicker.Size = new System.Drawing.Size(208, 24);
             this.BirthDatePicker.TabIndex = 2;
             this.BirthDatePicker.Value = new System.DateTime(2002, 1, 31, 0, 0, 0, 0);
             // 
             // DateOfBirthLabel
             // 
             this.DateOfBirthLabel.AutoSize = true;
-            this.DateOfBirthLabel.Location = new System.Drawing.Point(15, 125);
+            this.DateOfBirthLabel.Location = new System.Drawing.Point(13, 125);
             this.DateOfBirthLabel.Name = "DateOfBirthLabel";
-            this.DateOfBirthLabel.Size = new System.Drawing.Size(91, 17);
+            this.DateOfBirthLabel.Size = new System.Drawing.Size(90, 17);
             this.DateOfBirthLabel.TabIndex = 3;
             this.DateOfBirthLabel.Text = "Date of Birth:";
             // 
             // PhoneNumberMaskedTextBox
             // 
-            this.PhoneNumberMaskedTextBox.Location = new System.Drawing.Point(133, 173);
+            this.PhoneNumberMaskedTextBox.Location = new System.Drawing.Point(116, 173);
             this.PhoneNumberMaskedTextBox.Mask = "(020)-000-0000";
             this.PhoneNumberMaskedTextBox.Name = "PhoneNumberMaskedTextBox";
-            this.PhoneNumberMaskedTextBox.Size = new System.Drawing.Size(237, 22);
+            this.PhoneNumberMaskedTextBox.Size = new System.Drawing.Size(208, 24);
             this.PhoneNumberMaskedTextBox.TabIndex = 4;
             // 
             // PhoneNumberLabel
             // 
             this.PhoneNumberLabel.AutoSize = true;
-            this.PhoneNumberLabel.Location = new System.Drawing.Point(15, 178);
+            this.PhoneNumberLabel.Location = new System.Drawing.Point(13, 178);
             this.PhoneNumberLabel.Name = "PhoneNumberLabel";
-            this.PhoneNumberLabel.Size = new System.Drawing.Size(103, 17);
+            this.PhoneNumberLabel.Size = new System.Drawing.Size(100, 17);
             this.PhoneNumberLabel.TabIndex = 5;
             this.PhoneNumberLabel.Text = "Phone Number";
             // 
             // AddressRichTextBox
             // 
-            this.AddressRichTextBox.Location = new System.Drawing.Point(133, 230);
+            this.AddressRichTextBox.Location = new System.Drawing.Point(116, 230);
             this.AddressRichTextBox.Name = "AddressRichTextBox";
-            this.AddressRichTextBox.Size = new System.Drawing.Size(237, 96);
+            this.AddressRichTextBox.Size = new System.Drawing.Size(208, 96);
             this.AddressRichTextBox.TabIndex = 6;
             this.AddressRichTextBox.Text = "";
             // 
             // AddressLabel
             // 
             this.AddressLabel.AutoSize = true;
-            this.AddressLabel.Location = new System.Drawing.Point(13, 230);
+            this.AddressLabel.Location = new System.Drawing.Point(11, 230);
             this.AddressLabel.Name = "AddressLabel";
-            this.AddressLabel.Size = new System.Drawing.Size(60, 17);
+            this.AddressLabel.Size = new System.Drawing.Size(56, 17);
             this.AddressLabel.TabIndex = 7;
             this.AddressLabel.Text = "Address";
             // 
             // CreateAccountButton
             // 
-            this.CreateAccountButton.Location = new System.Drawing.Point(133, 346);
+            this.CreateAccountButton.Location = new System.Drawing.Point(116, 346);
             this.CreateAccountButton.Name = "CreateAccountButton";
-            this.CreateAccountButton.Size = new System.Drawing.Size(75, 23);
+            this.CreateAccountButton.Size = new System.Drawing.Size(66, 23);
             this.CreateAccountButton.TabIndex = 8;
             this.CreateAccountButton.Text = "Create";
             this.CreateAccountButton.UseVisualStyleBackColor = true;
@@ -126,7 +126,7 @@ namespace BankForm1
             this.PhoneCheckBox.AutoSize = true;
             this.PhoneCheckBox.Checked = true;
             this.PhoneCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.PhoneCheckBox.Location = new System.Drawing.Point(393, 177);
+            this.PhoneCheckBox.Location = new System.Drawing.Point(344, 177);
             this.PhoneCheckBox.Name = "PhoneCheckBox";
             this.PhoneCheckBox.Size = new System.Drawing.Size(18, 17);
             this.PhoneCheckBox.TabIndex = 9;
@@ -138,7 +138,7 @@ namespace BankForm1
             this.AddressCheckBox.AutoSize = true;
             this.AddressCheckBox.Checked = true;
             this.AddressCheckBox.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.AddressCheckBox.Location = new System.Drawing.Point(393, 234);
+            this.AddressCheckBox.Location = new System.Drawing.Point(344, 234);
             this.AddressCheckBox.Name = "AddressCheckBox";
             this.AddressCheckBox.Size = new System.Drawing.Size(18, 17);
             this.AddressCheckBox.TabIndex = 10;
@@ -147,9 +147,9 @@ namespace BankForm1
             // 
             // CreateAccountForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(700, 450);
             this.Controls.Add(this.AddressCheckBox);
             this.Controls.Add(this.PhoneCheckBox);
             this.Controls.Add(this.CreateAccountButton);
@@ -163,6 +163,7 @@ namespace BankForm1
             this.Controls.Add(this.CustomerNameTextBox);
             this.Name = "CreateAccountForm";
             this.Text = "Create Account Panel";
+            //this.Load += new System.EventHandler(this.CreateAccountForm_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

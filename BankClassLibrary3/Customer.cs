@@ -20,6 +20,12 @@ namespace BankClassLibrary3
             {
                 return _CustomerName;
             }
+            set
+            {
+                CustomerName = value;
+            }
+
+
         }
 
         public DateTime DateOfBirth
