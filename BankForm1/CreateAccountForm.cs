@@ -83,8 +83,11 @@ namespace BankForm1
             newAccount.DepositMoney(1000);
             newAccount.WithdrawMoney(500);
 
-            //MessageBox.Show("Account of Customer " + customerName + " has been created.");
-            DisplayAccountForm displayAccount = new DisplayAccountForm(newAccount);
+            StorageUtilityFunctions.SaveAccount(newAccount);
+
+            Account lastAccount = StorageUtilityFunctions.GetLastAccount();
+
+            DisplayAccountForm displayAccount = new DisplayAccountForm(newAccount); 
 
             this.Hide();
             displayAccount.ShowDialog();
