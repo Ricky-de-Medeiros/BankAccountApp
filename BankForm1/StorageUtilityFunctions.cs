@@ -34,6 +34,7 @@ namespace BankForm1
             return false;
         }
 
+        //Data Storage Layer
         public static Account GetLastAccount()
         {
             Account lastAccount = new Account();
@@ -95,6 +96,8 @@ namespace BankForm1
 
                 }
 
+                lastAccount = new Account(accountId, customerName, birthDate, phoneNumber, address);
+
                 nextLine = sr.ReadLine();
 
                 while(!string.IsNullOrEmpty(nextLine))
@@ -112,10 +115,14 @@ namespace BankForm1
 
                     Transaction newTransaction = new Transaction(transactionAmount, transactionType,
                         transactionDate, transactionLocation);
+                    //
+                    lastAccount.AddTransaction(newTransaction);
+
+
                 }
             }
 
-
+            return lastAccount;
             //string[] accountFiles = Directory.GetFiles(MainStorageDir); // Does not guarantee the file order
 
             //if (accountFiles.Length == 0)

@@ -36,18 +36,18 @@ namespace BankClassLibrary3
             {
                 return _AccountCustomer.PhoneNumber;
             }
-            set
-            {
-                if (String.IsNullOrEmpty(value))
-                {
-                    _AccountCustomer.PhoneNumber = EMPTY_PHONE;
-                }
-                else
-                {
-                    _AccountCustomer.PhoneNumber = value;
-                }
+            //set
+            //{
+            //    if (String.IsNullOrEmpty(value))
+            //    {
+            //        _AccountCustomer.PhoneNumber = EMPTY_PHONE;
+            //    }
+            //    else
+            //    {
+            //        _AccountCustomer.PhoneNumber = value;
+            //    }
 
-            }
+            //}
         }
 
         public string CustomerAddress
@@ -56,18 +56,18 @@ namespace BankClassLibrary3
             {
                 return _AccountCustomer.Address;
             }
-            set
-            {
-                if (String.IsNullOrEmpty(value))
-                {
-                    _AccountCustomer.Address = EMPTY_ADDRESS;
-                }
-                else
-                {
-                    _AccountCustomer.Address = value;
-                }
+            //set
+            //{
+            //    if (String.IsNullOrEmpty(value))
+            //    {
+            //        _AccountCustomer.Address = EMPTY_ADDRESS;
+            //    }
+            //    else
+            //    {
+            //        _AccountCustomer.Address = value;
+            //    }
 
-            }
+            //}
         }
 
         int _AccountNumber;
@@ -159,6 +159,18 @@ namespace BankClassLibrary3
         }
 
         // Initialization
+        public Account(int aAccountId, string aCustomerName, DateTime aDateOfBirth, string aPhone = null, string aAddress = null)
+        {
+
+            _AccountCustomer = new Customer(aCustomerName, aDateOfBirth, aPhone, aAddress);
+            //Generate random Globally Unique Identifiers Guid
+            _AccountNumber = aAccountId;// Guid.NewGuid().GetHashCode();
+
+            _CurrentBalance = 0;
+            _ListOfTransactions = new List<Transaction>();
+
+        }
+
         public Account(string aCustomerName, DateTime aDateOfBirth, string aPhone = null, string aAddress = null)
         {
 
@@ -170,6 +182,22 @@ namespace BankClassLibrary3
             _ListOfTransactions = new List<Transaction>();
 
         }
+
+        public void AddTransaction(Transaction newTransaction)
+        {
+            ListOfTransactions.Add(newTransaction);
+        
+            switch(newTransaction.TransactionTypeString)
+            {
+                case "deposit":
+                    _CurrentBalance += newTransaction.MoneyAmount;
+                    break;
+                case "withdrawal":
+                    _CurrentBalance -= newTransaction.MoneyAmount;
+                    break;
+            }
+        }
+        
 
         #endregion CONSTRUCTORS
 
