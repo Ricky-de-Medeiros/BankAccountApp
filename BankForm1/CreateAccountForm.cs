@@ -80,8 +80,13 @@ namespace BankForm1
             
             Account newAccount = new Account(customerName, birthDate, phone, address);
 
+            CheckingAccount newCheckingAccount = new CheckingAccount(-1, customerName, birthDate, phone, address);
+
             newAccount.DepositMoney(1000);
             newAccount.WithdrawMoney(500);
+
+            newAccount.DisplayAccountInfo();
+            newCheckingAccount.DisplayAccountInfo();
 
             StorageUtilityFunctions.SaveAccount(newAccount);
 
@@ -114,5 +119,6 @@ namespace BankForm1
             }
             return true;
         }
+
     }
 }
