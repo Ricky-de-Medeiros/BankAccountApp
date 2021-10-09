@@ -175,6 +175,8 @@ namespace BankClassLibrary3
             _AccountCustomer = new Customer(aAccountToCopy._AccountCustomer);
         }
 
+        
+
         // Initialization
         public Account(int aAccountId, string aCustomerName, DateTime aDateOfBirth, string aPhone = null, string aAddress = null)
         {
@@ -200,7 +202,7 @@ namespace BankClassLibrary3
 
         }
 
-        public void AddTransaction(Transaction newTransaction)
+        protected sealed override void AddTransaction(Transaction newTransaction)
         {
             ListOfTransactions.Add(newTransaction);
         
@@ -251,6 +253,27 @@ namespace BankClassLibrary3
         {
             Console.WriteLine("Account Id: {0} Current Balance {1} Regular Account Type", _AccountNumber, _CurrentBalance);
         }
+
+
+        public void WithdrawMoney(double transactionAmount, DateTime transactionDate, string transactionLocation)
+        {
+            Transaction newTransaction = new Transaction(transactionAmount, 
+                "Withdraw",
+                transactionDate, 
+                transactionLocation);
+            this.AddTransaction(newTransaction);
+
+        }
+
+        public void DepositMoney(double transactionAmount, DateTime transactionDate, string transactionLocation)
+        {
+            Transaction newTransaction = new Transaction(transactionAmount,
+                            "Deposit",
+                            transactionDate,
+                            transactionLocation);
+            this.AddTransaction(newTransaction);
+        }
+
         #endregion METHODS
 
 

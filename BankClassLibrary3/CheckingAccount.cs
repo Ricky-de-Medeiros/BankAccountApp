@@ -10,23 +10,31 @@ namespace BankClassLibrary3
     {
         public CheckingAccount() : base()
         {
-            // Additional initializations   
+            // Additional initializations
+            Commission = 0.01f;
         }
         
         public CheckingAccount(int aAccountId, string aCustomerName, DateTime aDateOfBirth, 
-            string aPhone = null, string aAddress = null) : base(aAccountId, aCustomerName, aDateOfBirth, aPhone, aAddress)
+            string aPhone = null, string aAddress = null) : 
+            base(aAccountId, aCustomerName, aDateOfBirth, aPhone, aAddress)
         {
+            Commission = 0.01f;
 
         }
 
         public override bool DepositMoney(double aAmount)
         {
-            return base.DepositMoney(aAmount); // returns the base method result
+            double newAmountAfterCommission = aAmount - aAmount * Commission;
+            
+            return base.DepositMoney(newAmountAfterCommission); // returns the base method result
         }
 
         public override bool WithdrawMoney(double aAmount)
         {
-            return base.WithdrawMoney(aAmount);
+
+            double newAmountAfterCommission = aAmount + aAmount * Commission; 
+            //this is reduced from account, customer gets wanted amount
+            return base.WithdrawMoney(newAmountAfterCommission);
         }
 
         public override void DisplayAccountInfo()

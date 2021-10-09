@@ -8,6 +8,7 @@ namespace BankClassLibrary3
 {
     public abstract class AccountBase
     {
+        
         public abstract string CustomerName { get; set; }
 
         public abstract double CurrentBalance { get; }
@@ -18,6 +19,6 @@ namespace BankClassLibrary3
 
         public abstract bool WithdrawMoney(double aMoneyAmount);
 
-
+        protected abstract void AddTransaction(Transaction aNewTransaction);
     }
 }

@@ -85,7 +85,7 @@ namespace BankForm1
             // 
             this.WithdrawButton.Location = new System.Drawing.Point(281, 418);
             this.WithdrawButton.Name = "WithdrawButton";
-            this.WithdrawButton.Size = new System.Drawing.Size(75, 23);
+            this.WithdrawButton.Size = new System.Drawing.Size(87, 23);
             this.WithdrawButton.TabIndex = 10;
             this.WithdrawButton.Text = "Withdraw";
             this.WithdrawButton.UseVisualStyleBackColor = true;
