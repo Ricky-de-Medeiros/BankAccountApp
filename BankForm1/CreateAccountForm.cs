@@ -78,25 +78,32 @@ namespace BankForm1
             string phone = PhoneTextInput;
             string address = AddressTextInput;
             
-            Account newAccount = new Account(customerName, birthDate, phone, address);
+            //Account newAccount = new Account(customerName, birthDate, phone, address);
 
             CheckingAccount newCheckingAccount = new CheckingAccount(-1, customerName, birthDate, phone, address);
+            SavingsAccount newSavingsAccount = new SavingsAccount(-1, customerName, birthDate, phone, address);
 
-            newAccount.DepositMoney(1000);
-            newAccount.WithdrawMoney(500);
 
-            newAccount.DisplayAccountInfo();
-            newCheckingAccount.DisplayAccountInfo();
+            //newAccount.DepositMoney(1000);
+            //newAccount.WithdrawMoney(500);
 
-            StorageUtilityFunctions.SaveAccount(newAccount);
+            //newAccount.DisplayAccountInfo();
+            //newCheckingAccount.DisplayAccountInfo();
 
-            Account lastAccount = StorageUtilityFunctions.GetLastAccount();
+            //StorageUtilityFunctions.SaveAccount(newAccount);
+            //Account lastAccount = StorageUtilityFunctions.GetLastAccount();
 
-            DisplayAccountForm displayAccount = new DisplayAccountForm(newAccount); 
+            DisplayAccountForm displayAccount1 = new DisplayAccountForm(newCheckingAccount);
+            DisplayAccountForm displayAccount2 = new DisplayAccountForm(newSavingsAccount);
+
+            displayAccount1.Text = "Checking Account";
+            displayAccount2.Text = "Savings Account";
+
 
             this.Hide();
-            displayAccount.ShowDialog();
-            this.Show();
+            displayAccount1.ShowDialog();
+            displayAccount2.ShowDialog();
+            //this.Show();
 
         }
 

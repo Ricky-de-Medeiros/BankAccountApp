@@ -108,15 +108,29 @@ namespace BankForm1
 
                     string[] transactionParts = transactionLine.Split('_'); //Transaction_Type_Transaction_Amount_Transaction_Date_Location
 
-                    string transactionType = transactionParts[0]; // will handle at constructor
+                    string transactionType = transactionParts[0];
+
                     double transactionAmount = Convert.ToDouble(transactionParts[1]);
                     DateTime transactionDate = DateTime.ParseExact(transactionParts[2], DateStringFormat, null);
                     string transactionLocation = transactionParts[3];
 
-                    Transaction newTransaction = new Transaction(transactionAmount, transactionType,
-                        transactionDate, transactionLocation);
-                    //
-                    lastAccount.AddTransaction(newTransaction);
+                    switch (transactionType)
+                    {
+                        case "deposit":
+                            lastAccount.DepositMoney(transactionAmount, transactionDate, transactionLocation);
+                            break;
+                        case "withdrawal":
+                            lastAccount.WithdrawMoney(transactionAmount, transactionDate, transactionLocation);
+                            break;
+                    }
+
+
+                    
+
+                    //Transaction newTransaction = new Transaction(transactionAmount, transactionType,
+                    //    transactionDate, transactionLocation);
+                    ////
+                    //lastAccount.AddTransaction(newTransaction);
 
 
                 }
