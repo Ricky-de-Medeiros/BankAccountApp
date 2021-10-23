@@ -45,6 +45,7 @@
     <Compile Include="AccountBase.cs" />
     <Compile Include="CheckingAccount.cs" />
     <Compile Include="Customer.cs" />
+    <Compile Include="IAccountValidatable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SavingsAccount.cs" />
     <Compile Include="Transaction.cs" />

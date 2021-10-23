@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace BankClassLibrary3
 {
-    public class Account : AccountBase
+    public class Account : AccountBase, IAccountValidatable
     {
 
         #region FIELDS AND PROPERTIES
@@ -226,7 +226,7 @@ namespace BankClassLibrary3
         public override bool DepositMoney(double aAmount)
         {
 
-            bool isSuccess = false;
+            bool isSuccess = true;
             _CurrentBalance += aAmount;
 
             // 5. Create a transaction object and add it to the list
@@ -239,12 +239,22 @@ namespace BankClassLibrary3
         // Withdraw Money Method
         public override bool WithdrawMoney(double aAmount)
         {
-            bool isSuccess = false;
-            _CurrentBalance -= aAmount;
+            bool isSuccess = true;
 
-            // 6. Create a transaction object and add it to the list
-            Transaction myTransaction = new Transaction(aAmount, TransactionType.WITHDRAWL);
-            _ListOfTransactions.Add(myTransaction);
+            if(_CurrentBalance < aAmount)
+            {
+                isSuccess = false;
+            }
+
+            else
+            {
+                _CurrentBalance -= aAmount;
+
+                // 6. Create a transaction object and add it to the list
+                Transaction myTransaction = new Transaction(aAmount, TransactionType.WITHDRAWL);
+                _ListOfTransactions.Add(myTransaction);
+            }
+           
 
             return isSuccess;
         }
@@ -274,12 +284,48 @@ namespace BankClassLibrary3
             this.AddTransaction(newTransaction);
         }
 
+        public bool IsCustomerNameValid(String aCustomerName)
+        {
+            if (!string.IsNullOrEmpty(CustomerName) &&
+                CustomerName.Length > 2 &&
+                CustomerName.Length < 25)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public bool IsBirthDateValid(DateTime aBirthDate)
+        {
+            if (DateTime.Compare(aBirthDate, new DateTime(DateTime.Now.Year - 18, 12, 31)) > 0)
+            {
+                return false;
+            }
+            return true;
+        }
+
+
+        public virtual bool IsDepositMoneyRequestValid(double aMoneyAmount)
+        {
+            return true;
+        }
+
+        public virtual bool IsWithdrawMoneyRequestValid(double aMoneyAmount)
+        {
+            return true;
+        }
+
+
         #endregion METHODS
 
+
+    }
+
+        
 
         #region NESTED TYPES
         //Nested Class
 
         #endregion NESTED TYPES
-    }
 }
+

@@ -10,6 +10,7 @@ namespace BankClassLibrary3
     // Savings Account : Account
     public sealed class SavingsAccount : Account
     {
+        const double MAX_WITHDRAW = 500;
         public SavingsAccount() : base()
         {
             // Additional initializations
@@ -26,16 +27,34 @@ namespace BankClassLibrary3
 
         public override bool DepositMoney(double aAmount)
         {
-
+            if(!IsDepositMoneyRequestValid(aAmount))
+            {
+                return false;
+            }
             return base.DepositMoney(aAmount); // returns the base method result
         }
 
         public override bool WithdrawMoney(double aAmount)
         {
+            if(!IsWithdrawMoneyRequestValid(aAmount))
+            {
+                return false;
+            }
 
             double newAmountAfterCommission = aAmount + aAmount * Commission;
             //this is reduced from account, customer gets wanted amount
             return base.WithdrawMoney(newAmountAfterCommission);
+        }
+
+        
+
+        public override bool IsWithdrawMoneyRequestValid(double aMoneyAmount)
+        {
+            if (aMoneyAmount > MAX_WITHDRAW)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }

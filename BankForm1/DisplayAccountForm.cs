@@ -54,7 +54,13 @@ namespace BankForm1
         private void DepositButton_Click(object sender, EventArgs e)
         {
             double depositAmount = Convert.ToDouble(DepositAmountTextBox.Text.ToString());
-            myAccount.DepositMoney(depositAmount);
+
+            if(!myAccount.DepositMoney(depositAmount))
+            {
+                MessageBox.Show("Deposit request is not valid");
+                return;
+            }
+            
             BalanceControlPanel.TextInput = myAccount.CurrentBalance.ToString();
             data.ResetBindings();
         }
@@ -62,7 +68,13 @@ namespace BankForm1
         private void WithdrawButton_Click(object sender, EventArgs e)
         {
             double withdrawAmount = Convert.ToDouble(WithdrawAmountTextBox.Text.ToString());
-            myAccount.WithdrawMoney(withdrawAmount);
+
+            if (!myAccount.WithdrawMoney(withdrawAmount))
+            {
+                MessageBox.Show("Withdraw request is not valid");
+                return;
+            }
+            
             BalanceControlPanel.TextInput = myAccount.CurrentBalance.ToString();
             data.ResetBindings();
 
